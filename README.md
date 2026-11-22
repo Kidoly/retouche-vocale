@@ -21,18 +21,25 @@ dans un format que Claude Code sait exploiter directement.
 L'identifiant de l'extension est fixe (`hfilcjapjemboanihfobbmoblppcehfb`, grâce au champ `key` du manifeste) :
 l'autorisation du micro survit aux mises à jour et aux déplacements du dossier.
 
-### Sur Windows
-1. Installer **Python 3.12 ou plus récent** depuis <https://www.python.org/downloads/> (cocher *Add python.exe to PATH*).
-   ffmpeg est facultatif : sans lui, l'audio est décodé par PyAV.
-2. Récupérer le projet :
+### Sur un autre PC (Windows)
+1. **Python** : s'il n'est pas déjà installé, prendre **Python 3.12 ou plus récent** sur <https://www.python.org/downloads/>
+   et cocher **Add python.exe to PATH** pendant l'installation. ffmpeg est facultatif : sans lui, l'audio est décodé par PyAV.
+2. **Récupérer le projet** :
    ```
    git clone https://github.com/Kidoly/retouche-vocale.git
    ```
-   (mise à jour plus tard : `git pull`, puis ↻ sur l'extension dans `chrome://extensions`)
-3. Dans Chrome / Edge / Brave : Mode développeur → *Charger l'extension non empaquetée* → dossier `retouche-vocale\extension`.
-4. Autoriser le micro sur la page d'accueil qui s'ouvre.
+3. **Installer l'extension** : dans `chrome://extensions` (ou `edge://extensions`, `brave://extensions`), activer le
+   *Mode développeur*, puis *Charger l'extension non empaquetée* → dossier `retouche-vocale\extension`.
+4. **Micro** : la page d'accueil s'ouvre toute seule → *Autoriser le micro*, en choisissant l'option permanente
+   (pas « Autoriser cette fois »).
 
-Si le PC est géré par l'entreprise, le mode développeur peut être bloqué par une stratégie : il faut alors demander à l'IT d'autoriser l'extension (ID `hfilcjapjemboanihfobbmoblppcehfb`).
+Au **premier export**, Claude Code met quelques minutes à installer Whisper (dans `%USERPROFILE%\.cache\retouche-vocale\venv`)
+et à télécharger le modèle. Les fois suivantes, c'est rapide.
+
+**Mises à jour** : `git pull` dans le dossier `retouche-vocale`, puis ↻ sur l'extension dans la page des extensions.
+
+**PC géré par l'entreprise** : le mode développeur peut être désactivé par une stratégie. Il faut alors demander à l'IT
+d'autoriser l'extension (ID `hfilcjapjemboanihfobbmoblppcehfb`).
 
 ## Utilisation
 | Action | Comment |
