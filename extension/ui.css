@@ -1,0 +1,37 @@
+/* Styles partagés des pages de l'extension (popup, options, micro) */
+:root {
+  color-scheme: dark;
+  --bg: #111113;
+  --card: #1c1c1f;
+  --line: #2a2a2e;
+  --text: #fafafa;
+  --muted: #a1a1aa;
+  --brand: #f43f5e;
+  --brand-hover: #e11d48;
+  --danger: #fca5a5;
+  --danger-bg: rgba(248, 113, 113, .12);
+  --ok: #4ade80;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #fafafa; --card: #fff; --line: #e4e4e7; --text: #18181b; --muted: #71717a;
+    --danger: #b91c1c; --danger-bg: #fef2f2; --ok: #15803d;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.45 var(--sans); }
+.btn {
+  font: 500 13px/1 var(--sans); height: 34px; padding: 0 14px; border-radius: 9px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--card); color: var(--text); transition: background .15s, border-color .15s;
+}
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; height: 38px; }
+.btn.primary:hover { background: var(--brand-hover); border-color: var(--brand-hover); }
+.btn.block { width: 100%; }
+.btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: #71717a; flex: none; }
+.dot.live { background: var(--brand); box-shadow: 0 0 0 4px rgba(244, 63, 94, .2); }
+.kbd { font: 11px var(--mono); color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; }

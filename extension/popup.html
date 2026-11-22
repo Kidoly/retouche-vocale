@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="ui.css">
+<style>
+  body { width: 340px; padding: 16px; }
+  header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  header img { width: 28px; height: 28px; }
+  header h1 { font-size: 15px; margin: 0; flex: 1; }
+  .status { display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); }
+  .status .label { flex: 1; }
+  .status .label b { display: block; font-size: 13px; }
+  .status .label span { color: var(--muted); font-size: 12px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0 12px; }
+  .stat { padding: 8px 10px; border-radius: 10px; background: var(--card); border: 1px solid var(--line); }
+  .stat b { display: block; font-size: 17px; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--muted); font-size: 11px; }
+  .row { display: flex; gap: 8px; margin-top: 8px; }
+  .row .btn { flex: 1; }
+  .export { margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); }
+  .export .path { font: 12px/1.4 var(--mono); color: var(--muted); word-break: break-all; margin: 4px 0 8px; }
+  .alert { margin-top: 10px; padding: 9px 12px; border-radius: 10px; background: var(--danger-bg); color: var(--danger); font-size: 12px; }
+  .alert a { color: inherit; font-weight: 600; }
+  footer { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+<header>
+  <img src="icons/icon-48.png" alt="">
+  <h1>Retouche Vocale</h1>
+  <span class="kbd" id="shortcut"></span>
+</header>
+
+<div class="status">
+  <span class="dot" id="dot"></span>
+  <div class="label"><b id="statusTitle">Session arrêtée</b><span id="statusSub">Démarre puis navigue en parlant.</span></div>
+</div>
+
+<div class="stats">
+  <div class="stat"><b id="nShots">0</b><span>captures</span></div>
+  <div class="stat"><b id="nPages">0</b><span>pages</span></div>
+  <div class="stat"><b id="nTime">0:00</b><span>durée</span></div>
+</div>
+
+<button class="btn primary block" id="toggle">Démarrer la session</button>
+<div class="row">
+  <button class="btn" id="mic">Micro activé</button>
+  <button class="btn" id="export">Exporter</button>
+</div>
+
+<div class="alert" id="alert" hidden></div>
+
+<div class="export" id="exportBox" hidden>
+  <b>Dernier export</b>
+  <div class="path" id="exportPath"></div>
+  <button class="btn block" id="copy">Copier le prompt pour Claude Code</button>
+</div>
+
+<footer>
+  <a href="#" id="clear">Effacer la session</a>
+  <span><a href="#" id="help">Aide</a> · <a href="#" id="options">Options</a></span>
+</footer>
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Retouche Vocale · Options</title>
+<link rel="icon" href="icons/icon-32.png">
+<link rel="stylesheet" href="ui.css">
+<style>
+  body { font-size: 14px; }
+  main { max-width: 640px; margin: 0 auto; padding: 40px 20px 60px; }
+  header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+  header img { width: 48px; height: 48px; }
+  header h1 { margin: 0; font-size: 22px; }
+  header p { margin: 2px 0 0; color: var(--muted); }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 6px 18px; margin-bottom: 18px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 28px 0 10px; }
+  .field { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .field:last-child { border-bottom: 0; }
+  .field .label { flex: 1; }
+  .field .label b { display: block; font-weight: 500; }
+  .field .label span { color: var(--muted); font-size: 13px; }
+  select, input[type=number] { font: inherit; height: 34px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--text); }
+  input[type=number] { width: 90px; }
+  input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--brand); }
+  .saved { color: var(--ok); font-size: 13px; opacity: 0; transition: opacity .3s; }
+  .saved.show { opacity: 1; }
+  ol, ul { padding-left: 20px; margin: 12px 0; }
+  li { margin: 6px 0; }
+  .help p { margin: 12px 0; }
+  code { font: 12.5px var(--mono); background: var(--bg); border: 1px solid var(--line); padding: 1px 5px; border-radius: 5px; }
+  .version { color: var(--muted); font-size: 12px; text-align: center; margin-top: 30px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icons/icon-128.png" alt="">
+    <div><h1>Retouche Vocale</h1><p>Navigue, parle, capture : tes retouches visuelles prêtes pour Claude Code.</p></div>
+  </header>
+
+  <h2>Réglages <span class="saved" id="saved">· enregistré</span></h2>
+  <section>
+    <div class="field">
+      <div class="label"><b>Durée du clic long</b><span>Temps d'appui immobile avant de passer en mode capture.</span></div>
+      <input type="number" id="longPressMs" min="150" max="1500" step="50"> <span>ms</span>
+    </div>
+    <div class="field">
+      <div class="label"><b>Noter les clics</b><span>Indique à Claude sur quoi tu cliquais pendant que tu parlais.</span></div>
+      <input type="checkbox" id="logClicks">
+    </div>
+    <div class="field">
+      <div class="label"><b>Position de la barre</b><span>Coin de l'écran où s'affiche la barre d'enregistrement.</span></div>
+      <select id="barPosition"><option value="left">En bas à gauche</option><option value="right">En bas à droite</option></select>
+    </div>
+    <div class="field">
+      <div class="label"><b>Modèle de transcription</b><span>Utilisé par <code>transcrire.py</code>. Plus gros = plus précis mais plus lent.</span></div>
+      <select id="modele">
+        <option value="small">Small (rapide)</option>
+        <option value="medium">Medium</option>
+        <option value="large-v3-turbo">Large v3 Turbo (précis)</option>
+      </select>
+    </div>
+    <div class="field">
+      <div class="label"><b>Accès au micro</b><span>À autoriser de façon permanente pour ne plus être sollicité.</span></div>
+      <button class="btn" id="mic">Régler le micro</button>
+    </div>
+    <div class="field">
+      <div class="label"><b>Raccourci clavier</b><span>Démarrer / arrêter la session.</span></div>
+      <span class="kbd" id="shortcut">—</span>
+      <button class="btn" id="shortcuts">Modifier</button>
+    </div>
+  </section>
+
+  <h2 id="aide">Mode d'emploi</h2>
+  <section class="help">
+    <ol>
+      <li><b>Démarre</b> la session (icône de l'extension ou raccourci). Une barre apparaît en bas de la page.</li>
+      <li><b>Navigue et parle</b> normalement : ta voix est enregistrée, tes clics et changements de page sont notés.</li>
+      <li><b>Capture une zone</b> : clic long (sans bouger) puis glisse ; la capture est prise au relâchement. <code>Échap</code> annule.</li>
+      <li><b>Exporte</b> : le dossier apparaît dans tes téléchargements (<code>retouches-visuelles/…</code>) et le prompt est copié.</li>
+      <li><b>Colle le prompt dans Claude Code</b> : il transcrit l'audio en local (Whisper), lit les notes et les captures, et fait les retouches.</li>
+    </ol>
+    <p>Si la barre affiche une alerte rouge, le micro ne transmet plus rien : l'extension le relance d'elle-même, mais vérifie ton micro.</p>
+  </section>
+
+  <p class="version" id="version"></p>
+</main>
+<script src="options.js"></script>
+</body>
+</html>

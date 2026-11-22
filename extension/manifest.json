@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Retouche Vocale",
+  "short_name": "Retouche",
+  "version": "1.1.2",
+  "description": "Navigue sur ton site en parlant, capture des zones d'un clic long : tes retouches visuelles prêtes pour Claude Code.",
+  "minimum_chrome_version": "116",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkV1uFOUjZUX8A2+wk72tx5yQn5evGL0le2/rJfGpEoX7D+ES0WLOow6st8Eiwo7yGF8zbm2leKQfP1IlG+oibXuFQBqFJowBDi8e4imv+7zoDkLg29B8eW6iuswMKyYZsBiOEzRtuo6DoJXqmLEVVKbqVgNrEkZkvyYdqy6xkLBB+SjC/dAI0QWsTyxsJYNI+dJuK6BHZVM2UssV0VB314+wt5jr5y3hUKZGccECuXFr4UysT2vlZaLx2WVH6JZgdlAi37KmA9/fxb5V2U5nFjT5YozbgQkIfjJhNQqhMhdEWQbbCyZWZss/tHY3YUm0LnRwmfrNf7EccDYWf/34wwIDAQAB",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": ["storage", "unlimitedStorage", "downloads", "tabs", "scripting", "offscreen"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    { "matches": ["<all_urls>"], "js": ["content.js"], "run_at": "document_idle" }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Retouche Vocale",
+    "default_icon": {
+      "16": "icons/icon-off-16.png",
+      "32": "icons/icon-off-32.png",
+      "48": "icons/icon-off-48.png"
+    }
+  },
+  "options_ui": { "page": "options.html", "open_in_tab": true },
+  "commands": {
+    "toggle-session": {
+      "suggested_key": { "default": "Alt+Shift+R" },
+      "description": "Démarrer / arrêter la session"
+    }
+  }
+}

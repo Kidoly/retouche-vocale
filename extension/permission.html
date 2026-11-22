@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Retouche Vocale · Micro</title>
+<link rel="icon" href="icons/icon-32.png">
+<link rel="stylesheet" href="ui.css">
+<style>
+  body { display: grid; place-items: center; min-height: 100vh; padding: 20px; font-size: 14px; }
+  .card { width: 100%; max-width: 480px; padding: 32px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); text-align: center; }
+  .card > img { width: 56px; height: 56px; display: block; margin: 0 auto 14px; }
+  h1 { margin: 0 0 8px; font-size: 20px; }
+  p { color: var(--muted); margin: 10px 0; }
+  .tip { text-align: left; margin: 18px 0; padding: 12px 14px; border-radius: 12px; background: var(--bg); border: 1px solid var(--line); }
+  .tip b { color: var(--text); }
+  .choice { display: inline-block; padding: 1px 7px; border-radius: 6px; background: var(--brand); color: #fff; font-weight: 600; }
+  .ok { font-size: 40px; line-height: 1; margin-bottom: 8px; color: var(--ok); }
+  .small { font-size: 12px; margin-top: 18px; }
+  .small a { color: var(--muted); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="card">
+  <img src="icons/icon-128.png" alt="">
+
+  <div id="ask">
+    <h1 id="askTitle">Autoriser le micro</h1>
+    <p id="askText">Retouche Vocale enregistre tes remarques pendant que tu navigues. Il lui faut l'accès au micro, une seule fois.</p>
+    <div class="tip">
+      Dans la fenêtre du navigateur, choisis <span class="choice">Autoriser lors de la visite du site</span>
+      (ou l'option permanente), <b>pas « Autoriser cette fois »</b>, sinon il te sera redemandé.
+    </div>
+    <button class="btn primary block" id="go">Autoriser le micro</button>
+    <p id="err" hidden></p>
+  </div>
+
+  <div id="done" hidden>
+    <div class="ok">✓</div>
+    <h1>Micro autorisé</h1>
+    <p>C'est réglé. Démarre une session depuis l'icône de l'extension (ou <span class="kbd" id="shortcut">Alt+Maj+R</span>) sur ton site.</p>
+    <button class="btn block" id="close">Fermer cet onglet</button>
+  </div>
+
+  <p class="small">Le navigateur ne propose pas la fenêtre ? <a href="#" id="manual">Régler le micro à la main</a></p>
+</div>
+<script src="permission.js"></script>
+</body>
+</html>
